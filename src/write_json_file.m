@@ -1,6 +1,6 @@
-function write_json_file( path, json_object )
+function write_json_file( file, json )
 
-write_file( path, jsonencode( json_object ) );
+write_file( file, jsonencode( json ) );
 
 end
 

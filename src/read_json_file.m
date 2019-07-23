@@ -1,6 +1,6 @@
-function json_object = read_json_file( path )
+function json = read_json_file( file )
 
-json_object = jsondecode( read_file( path ) );
+json = jsondecode( read_file( file ) );
 
 end
 

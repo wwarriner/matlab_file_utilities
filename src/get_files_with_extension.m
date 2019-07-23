@@ -1,15 +1,12 @@
-function listing = get_files_with_extension( scan_dir, scan_ext, varargin )
+function contents = get_files_with_extension( contents, ext )
 
-assert( exist( scan_dir, 'dir' ) == 7 )
-if ~startsWith( scan_ext, '.', varargin{ : } )
-    scan_ext = [ '.' scan_ext ];
+if ~startsWith( ext, '.' )
+    ext = [ '.' ext ];
 end
-
-listing = struct2table( dir( scan_dir ) );
-listing( listing.isdir == 1, : ) = [];
-[ ~, ~, exts ] = cellfun( @fileparts, [ listing.name ], 'uniformoutput', 0 );
-have_ext = cell2mat( cellfun( @(x) strcmpi( x, scan_ext ), exts, 'uniformoutput', 0 ) );
-listing( ~have_ext, : ) = [];
+contents( contents.isdir == 1, : ) = [];
+[ ~, ~, exts ] = cellfun( @fileparts, [ contents.name ], 'uniformoutput', 0 );
+has_ext = cell2mat( cellfun( @(x)strcmpi(x,ext), exts, 'uniformoutput', 0 ) );
+contents( ~has_ext, : ) = [];
 
 end
 
