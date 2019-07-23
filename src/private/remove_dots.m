@@ -1,8 +1,7 @@
-function dir_struct = remove_dots( dir_struct )
+function dir_table = remove_dots( dir_table )
 
-names = { dir_struct.name };
-dots = cellfun( @(x)strcmp(x,'.')||strcmp(x,'..'), names );
-dir_struct( dots ) = [];
+dots = ismember( { '.', '..' }, dir_table.name );
+dir_table( dots, : ) = [];
 
 end
 
